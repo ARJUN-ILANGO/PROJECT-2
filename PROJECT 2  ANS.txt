@@ -1,0 +1,73 @@
+var squarid = createSprite(198,48,20,20);
+var pin1 = createSprite(200,300,20,20);
+var pin2 = createSprite(180,320,20,20);
+var pin3 =createSprite(220,320,20,20);
+var pin4 = createSprite(160,340,20,20);
+var pin5 = createSprite(200,340,20,20);
+var pin6 = createSprite(240,340,20,20);
+squarid.shapeColor="red";
+
+function draw(){
+    background("pink");
+    squarid.bounce(pin1);
+    squarid.bounce(pin2);
+    squarid.bounce(pin3);
+    squarid.bounce(pin4);
+    squarid.bounce(pin5);
+    squarid.bounce(pin6);
+    pin1.bounce(pin2);
+    pin1.bounce(pin3);
+    pin1.bounce(pin4);
+    pin1.bounce(pin5);
+    pin1.bounce(pin6);
+    pin2.bounce(pin3);
+    pin2.bounce(pin4);
+    pin2.bounce(pin5);
+    pin2.bounce(pin6);
+    pin3.bounce(pin4);
+    pin3.bounce(pin5);
+    pin3.bounce(pin6);
+    pin4.bounce(pin5);
+    pin5.bounce(pin6);
+
+  if(keyDown("DOWN_ARROW")){
+    squarid.velocityX=0;
+    squarid.velocityY=5;
+    
+  }
+  if(keyDown("UP_ARROW")){
+    squarid.velocityX=0;
+   squarid.velocityY=-5;
+  } 
+  if(keyDown("LEFT_ARROW")){
+    squarid.velocityX=-5;
+    squarid.velocityY=0;
+  }
+  if (keyDown("RIGHT_ARROW")){
+     squarid.velocityX=5;
+     squarid.velocityY=0;
+  }                                                    
+   if(squarid.collide(pin1||pin2||pin3||pin4||pin5||pin6)){
+   squarid.setSpeedAndDirection(0, 90);
+   }
+     if ((pin1.x>400||pin1.y>400||pin1.x<0||pin1.y<0)&&(pin2.x>400||pin2.y>400||pin2.x<0||pin2.y<0)&&(pin3.x>400||pin3.y>400||pin3.x<0||pin3.y<0)&&(pin4.x>400||pin4.y>400||pin4.x<0||pin4.y<0)&&(pin5.x>400||pin5.y>400||pin5.x<0||pin5.y<0)&&(pin6.x>400||pin6.y>400||pin6.x<0||pin6.y<0)) {
+       text("YOU WIN",158,178);
+       squarid.velocityY=0;
+       squarid.velocityX=0;
+       squarid.pause();
+       squarid.destroy();
+     }
+     
+    if (squarid.y>440||squarid.x>440||squarid.y<-5||squarid.x<-5) {
+      text ("YOU LOSE",195,195);
+      squarid.velocityY=0;
+       squarid.velocityX=0;
+       squarid.pause();
+       squarid.destroy();
+    }
+    text ("PUSH 6 COINS OUT OF THE SCREEN TO WIN",62,107);
+    text ("IF YOU PUSH RED COIN OUT OF THE EDGE THEN YOU ARE OUT",20,124);
+           
+  drawSprites();
+}
+
